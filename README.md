@@ -1,4 +1,4 @@
-# Front-Lps# Front LPS - Repositório de Componentes e Padrões para Landing Pages
+# Front LPS - Repositório de Componentes e Padrões para Landing Pages
 
 ## Descrição
 O **Front LPS** é um repositório no GitHub destinado a armazenar trechos de código reutilizáveis para a criação de Landing Pages (páginas de destino). Além disso, o repositório inclui documentação e padrões de projeto para facilitar o desenvolvimento e manutenção de páginas de destino de alta qualidade.
