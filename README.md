@@ -9,7 +9,7 @@ O objetivo principal deste repositório é oferecer uma coleção de componentes
 ## Estrutura do Repositório
 O repositório está organizado da seguinte maneira:
 
-- **/scripts**:  Conte codigos e scripts.
+- **/scripts**: codigos e scripts.
 - **/style**: componentes como HTML, CSS.
 - **/pattern**: Documentação do projeto, incluindo guias de uso, exemplos e informações sobre os padrões adotados.
 - **/examples**: Exemplos práticos de como integrar os componentes em uma Landing Page.
