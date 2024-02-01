@@ -1,0 +1,47 @@
+
+<!--
+    A div abaixo sera o formulario
+-->
+    <div id="zf_div__jDwD9Nw52B2c_LAapkMZG6zlQvKfIHjzdUyXAye9bA"></div>
+
+<!--
+    Coloque o script no final da pagina
+-->
+
+<!--
+  Se formulario for diferente coloque o mesmo aqui
+f.src = `(Coloque o link aqui)&Slug=${window.location.pathname}`
+apos isso substinua ao f.src do script
+Apos isso va la no formulario no builder e crie um campo no formulario invisivil chamado Slug
+-->
+<script type="text/javascript">(function() {
+        try{
+        var f = document.createElement("iframe");
+        f.src =`https://forms.zohopublic.com/grupofmx/form/test/formperma/_jDwD9Nw52B2c_LAapkMZG6zlQvKfIHjzdUyXAye9bA?zf_rszfm=1&Slug=${window.location.pathname}`;
+        f.style.border="none";
+        f.style.height="424px";
+        f.style.width="90%";
+        f.style.transition="all 0.5s ease";
+        f.setAttribute("aria-label", 'test');
+        
+        var d = document.getElementById("zf_div__jDwD9Nw52B2c_LAapkMZG6zlQvKfIHjzdUyXAye9bA");
+        d.appendChild(f);
+        window.addEventListener('message', function (){
+        var evntData = event.data;
+        if( evntData && evntData.constructor == String ){
+        var zf_ifrm_data = evntData.split("|");
+        if ( zf_ifrm_data.length == 2 ) {
+        var zf_perma = zf_ifrm_data[0];
+        var zf_ifrm_ht_nw = ( parseInt(zf_ifrm_data[1], 10) + 15 ) + "px";
+        var iframe = document.getElementById("zf_div__jDwD9Nw52B2c_LAapkMZG6zlQvKfIHjzdUyXAye9bA").getElementsByTagName("iframe")[0];
+        if ( (iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0 ) {
+        var prevIframeHeight = iframe.style.height;
+        if ( prevIframeHeight != zf_ifrm_ht_nw ) {
+        iframe.style.height = zf_ifrm_ht_nw;
+        }
+        }
+        }
+        }
+        }, false);
+        }catch(e){}
+        })();</script>
