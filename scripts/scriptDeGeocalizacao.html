@@ -1,7 +1,96 @@
+<!-- Tem quer inserido no body -->
+
+<!-- colocar os inputs dentro do formulario -->
+
+<input  type="hidden" name="SingleLine3"  id="countryGeolocalization" fieldType=1 maxlength="255" placeholder="" />
+
+<input  type="hidden" name="SingleLine2"  id="stateGeolocalization" fieldType=1 maxlength="255" placeholder="" />
+
+<input  type="hidden" name="SingleLine1"  id="cityGeolocalization" fieldType=1 maxlength="255" placeholder="" />
 
 
-<input  type="hidden" name="SingleLine4"  id="countryGeolocalization" fieldType=1 maxlength="255" placeholder="" />
+<!-- Colocar script no final da pagina -->
 
-<input  type="hidden" name="SingleLine3"  id="stateGeolocalization" fieldType=1 maxlength="255" placeholder="" />
 
-<input  type="hidden" name="SingleLine2"  id="cityGeolocalization" fieldType=1 maxlength="255" placeholder="" />
+<script>
+    
+    //utiliza da função nativa navigator onde esa linha pucha os dados de navegação e diz se deu certo ou não
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    //se tiver dado certo ele sege no fluxo de sucesso chamando o input
+    async function onSuccess(position){
+        //pega latitude logitude do position
+        const { latitude, longitude } = await position.coords;
+        
+        //chama funcao requestGeolocazation onde a mesma passa a latitude e logitude e faz a requizição para API
+        await requestGeolocazation(latitude,longitude)
+        return;
+    }
+    function onError(){
+        console.log("error")
+    }
+
+    //funcao que faz requizição para uma api open source passados a latitude e logitude e faz a geolocalização reversa
+    async function requestGeolocazation(latitude,longitude){
+        //coloca os valores de latitude logitude pegados da permição do usuario
+        let url = await `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`;
+       // Configuração das opções da requisição
+       const myHeaders = await new Headers(); // Não é necessário adicionar cabeçalhos personalizados neste caso
+   
+       const myInit = await {
+       method: "GET",        // Método HTTP GET
+       headers: myHeaders,   // Headers (pode ser deixado vazio se não precisar de cabeçalhos específicos)
+       mode: "cors",         // Modo CORS (Cross-Origin Resource Sharing)
+       cache: "default"      // Cache padrão do navegador
+       };
+   
+       // Realizando a requisição fetch para a URL especificada
+       fetch(url, myInit)
+       .then(function(response) {
+           // Verifica se a resposta é bem-sucedida
+           if (!response.ok) {
+           throw new Error('Network response was not ok ' + response.statusText);
+           }
+           // Retorna a resposta como JSON
+           response.json()
+               .then(response =>{
+                    //puxa tres dados do response
+                   let { locality, principalSubdivision, countryName,  } = response
+                   //cria um obejtos dos mesmos
+                   let data = {
+                       city:locality,
+                       state:principalSubdivision,
+                       country:countryName
+   
+                   }
+                   //chama funcao onde o alterInput pega os inputs e injeta os dados passados pelo data
+                   alterInput(data)
+ 
+               
+               
+               })
+    
+           return ;
+       })
+       .then(function(data) {
+           // Exibe os dados recebidos no console
+           console.log(data);
+       })
+       .catch(function(error) {
+           // Captura e exibe qualquer erro ocorrido durante o fetch
+           console.error('There has been a problem with your fetch operation:', error);
+       });
+       }
+
+        //funcao onde o alterInput pega os inputs e injeta os dados passados pelo data(dados passados pela funcao requestGeolocazation)
+    async function alterInput(date){
+        //pega os id
+        let cityGeolocalization = await window.document.getElementById("cityGeolocalization")
+        let stateGeolocalization = await window.document.getElementById("stateGeolocalization")
+        let countryGeolocalization = await window.document.getElementById("countryGeolocalization")
+        // injeta os dados nos ids
+        cityGeolocalization.value = date.city
+        stateGeolocalization.value = date.state
+        countryGeolocalization.value = date.country
+    }
+</script>
+
