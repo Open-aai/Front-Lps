@@ -10,9 +10,7 @@ O objetivo principal deste repositório é oferecer uma coleção de componentes
 O repositório está organizado da seguinte maneira:
 
 - **/scripts**: codigos e scripts.
-- **/style**: componentes como HTML, CSS.
-- **/pattern**: Documentação do projeto, incluindo guias de uso, exemplos e informações sobre os padrões adotados.
-- **/pages**: Aqui serão guardados pasta onde estas pasta terão landing pages que ja fizemos, incluira Desing da LP, icones, e alguns modelos de cofigo que foi usado nesta pagina.
+- **/em-construção**: codigos não teminado ainda
 
 ## Como Usar
 1. **Clone o Repositório:**
